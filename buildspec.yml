@@ -19,7 +19,6 @@ phases:
       # - command
   build:
     commands:
-        - mvn clean install
         - docker build -t cross-teste:latest .
         - docker tag cross-teste:latest 400483838006.dkr.ecr.us-east-1.amazonaws.com/cross-teste:latest
         - $(aws ecr get-login --registry-ids 400483838006 --no-include-email)
