@@ -1,0 +1,41 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  #install:
+    #commands:
+      # - command
+      # - command
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  build:
+    commands:
+        - mvn clean install
+        - docker build -t cross-teste:latest .
+        - docker tag cross-teste:latest 400483838006.dkr.ecr.us-east-1.amazonaws.com/cross-teste:latest
+        - $(aws ecr get-login --registry-ids 400483838006 --no-include-email)
+        - docker push 400483838006.dkr.ecr.us-east-1.amazonaws.com/cross-teste:latest
+      # - command
+      # - command
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
